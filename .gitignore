@@ -1,0 +1,65 @@
+# -------------------------
+# PyCharm / JetBrains
+# -------------------------
+# Default ignored files
+.shelf/
+workspace.xml
+.idea/httpRequests/
+.idea/dataSources/
+.idea/dataSources.local.xml
+
+# Ignore entire .idea except specific useful files  
+# (optional, but commonly used)
+# .idea/
+# !.idea/.gitignore
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Byte-compiled / optimized / DLL files
+*.so
+
+# -------------------------
+# Virtual Environments
+# -------------------------
+venv/
+.env/
+.venv/
+env/
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# Logs / Outputs
+# -------------------------
+*.log
+
+# -------------------------
+# Data
+# -------------------------
+# Commented out so you choose:
+# data/  
+# If your data becomes large later, uncomment above.
+
+# -------------------------
+# OS-generated files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Cache from tools
+# -------------------------
+pytest_cache/
+.coverage
+*.coverage
+ruff_cache/
