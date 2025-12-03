@@ -20,11 +20,11 @@ def main():
         print(f"Error: {data_path} not found.")
         return
 
-    df = pd.read_csv(data_path)
+    insurance_dataset = pd.read_csv(data_path)
 
     # 2. Split Data
-    X = df.drop(columns=['charges'])
-    y = df['charges'].values  # Convert to numpy array immediately
+    X = insurance_dataset.drop(columns=['charges'])
+    y = insurance_dataset['charges'].values  # Convert to numpy array immediately
 
     X_train_raw, X_test_raw, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
