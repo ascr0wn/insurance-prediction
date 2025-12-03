@@ -1,27 +1,45 @@
 import numpy as np
+from numpy.typing import NDArray
 
 class MyLinearRegression:
     """
-    A custom Linear Regression model using Gradient Descent.
+    A custom Linear Regression model implementation using Gradient Descent.
+
+    Attributes:
+        lr (float): The learning rate for gradient descent.
+        iterations (int): The number of iterations to run gradient descent.
+        weights (NDArray | None): The weights (coefficients) of the model.
+        bias (float | None): The bias (intercept) of the model.
+        cost_history (list[float]): A record of the cost (MSE) at each iteration.
     """
-    def __init__(self, learning_rate=0.01, iterations=1000):
+
+    def __init__(self, learning_rate: float = 0.01, iterations: int = 1000):
+        """
+        Initializes the MyLinearRegression model.
+
+        Args:
+            learning_rate (float): The step size for parameter updates. Defaults to 0.01.
+            iterations (int): The number of passes over the training data. Defaults to 1000.
+        """
         self.lr = learning_rate
         self.iterations = iterations
-        self.weights = None
-        self.bias = None
-        self.cost_history = []
+        self.weights: NDArray | None = None
+        self.bias: float | None = None
+        self.cost_history: list[float] = []
 
-    def fit(self, X, y):
+    def fit(self, X: NDArray, y: NDArray) -> None:
         """
-        Train the model using Gradient Descent.
-        X: features (m_samples, n_features)
-        y: target values (m_samples,)
+        Trains the model using Gradient Descent.
+
+        Args:
+            X (NDArray): The feature matrix of shape (n_samples, n_features).
+            y (NDArray): The target values of shape (n_samples,).
         """
         # 1. Initialize parameters
         n_samples, n_features = X.shape
-        self.weights = np.zeros(n_features) # Start weights at 0
-        self.bias = 0                       # Start bias at 0
-        self.cost_history = []              # Reset history
+        self.weights = np.zeros(n_features)  # Start weights at 0
+        self.bias = 0.0                      # Start bias at 0
+        self.cost_history = []               # Reset history
 
         # 2. Gradient Descent Loop
         for i in range(self.iterations):
@@ -47,8 +65,17 @@ class MyLinearRegression:
             if i % 1000 == 0:
                 print(f"Iteration {i}: Cost {cost}")
 
-    def predict(self, X):
+    def predict(self, X: NDArray) -> NDArray:
         """
-        Predict future values.
+        Predicts target values for the given input features.
+
+        Args:
+            X (NDArray): The feature matrix of shape (n_samples, n_features).
+
+        Returns:
+            NDArray: The predicted values.
         """
+        if self.weights is None or self.bias is None:
+            raise ValueError("Model has not been trained yet. Please call fit() first.")
+
         return np.dot(X, self.weights) + self.bias
