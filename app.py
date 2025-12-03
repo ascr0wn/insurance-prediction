@@ -302,7 +302,10 @@ elif page == "Benchmark":
                 'Scikit-Learn (OLS)': [sklearn_r2, sklearn_mae]
             })
 
-            st.table(results.style.format("{:.4f}"))
+            st.table(results.style.format({
+                'Custom (Gradient Descent)': "{:.4f}",
+                'Scikit-Learn (OLS)': "{:.4f}"
+            }))
 
             # Conclusion
             diff = abs(custom_r2 - sklearn_r2)
